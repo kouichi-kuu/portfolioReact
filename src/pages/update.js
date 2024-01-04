@@ -12,7 +12,7 @@ const UpdateItem = (props)=>{
 
     useEffect(()=>{
         const getSingleItem = async()=>{
-            const response = await fetch(`http://localhost:5000/item/${params.id}`)
+            const response = await fetch(`https://portfolionodejs-i77e.onrender.com/item/${params.id}`)
             const jsonResponse = await response.json()
             setProgram(jsonResponse.singleItem.program)
             setRuby(jsonResponse.singleItem.ruby)
@@ -26,7 +26,7 @@ const UpdateItem = (props)=>{
     const handleSubmit = async(e)=>{
         e.preventDefault()
         try{
-            const response = await fetch(`http://localhost:5000/item/update/${params.id}`,{
+            const response = await fetch(`https://portfolionodejs-i77e.onrender.com/item/update/${params.id}`,{
                 method:"PUT",
                 headers:{
                     "Accept":"application/json",

@@ -11,7 +11,7 @@ const ReadSingleItem = ()=>{
     
     useEffect(()=>{
         const getSingleItem = async()=>{
-            const response = await fetch(`http://localhost:5000/item/${params.id}`)
+            const response = await fetch(`https://portfolionodejs-i77e.onrender.com/item/${params.id}`)
             const jsonResponse = await response.json()
             setProgram(jsonResponse.singleItem.program)
             setUpdate(jsonResponse.singleItem.update)

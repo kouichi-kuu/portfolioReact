@@ -5,7 +5,7 @@ const ItemHtml = ()=>{
     const [itemProg, setItemProg] = useState()
     useEffect(()=>{
         const getItems = async()=>{
-            const response = await fetch('http://localhost:5000/item/html')
+            const response = await fetch('https://portfolionodejs-i77e.onrender.com/item/html')
             const jsonResponse = await response.json()
             setItemProg(jsonResponse)
         }

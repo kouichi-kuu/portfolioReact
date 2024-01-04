@@ -5,7 +5,7 @@ const ItemJs = ()=>{
     const [itemProg, setItemProg] = useState()
     useEffect(()=>{
         const getItems = async()=>{
-            const response = await fetch("http://localhost:5000/item/javascript")
+            const response = await fetch("https://portfolionodejs-i77e.onrender.com/item/javascript")
             const jsonResponse = await response.json()
             setItemProg(jsonResponse)
         }

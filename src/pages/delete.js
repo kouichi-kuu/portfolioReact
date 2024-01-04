@@ -11,7 +11,7 @@ const Delete = ()=>{
 
     useEffect(()=>{
         const getSingleItem = async()=>{
-            const response = await fetch(`http://localhost:5000/item/${params.id}`)
+            const response = await fetch(`https://portfolionodejs-i77e.onrender.com/item/${params.id}`)
             const jsonResponse = await response.json()
             setProgram(jsonResponse.singleItem.program)
             setUpdate(jsonResponse.singleItem.update)
@@ -24,7 +24,7 @@ const Delete = ()=>{
     const handleSubmit = async(e)=>{
         e.preventDefault()
         try{
-            const response = await fetch(`http://localhost:5000/item/delete/${params.id}`,{
+            const response = await fetch(`https://portfolionodejs-i77e.onrender.com/item/delete/${params.id}`,{
                 method:"DELETE",
                 headers:{
                     "Accept":"application/json",
