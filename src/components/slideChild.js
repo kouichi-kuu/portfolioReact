@@ -1,9 +1,11 @@
 import React from "react";
 import {useRef,useEffect,createRef} from "react";
+import { Link } from "react-router-dom";
 
 const SlideChild = (props)=>{
+    //console.log(props.slideData && props.slideData)
     const listRef = useRef([])
-    props.slideData.forEach((_,index)=>{
+    props.slideData && props.slideData.forEach((_,index)=>{
         listRef.current[index] = createRef()
     })
     useEffect(()=>{
@@ -16,10 +18,10 @@ const SlideChild = (props)=>{
     },[])
     return (
         <>
-        {props.slideData.map((ref,index)=>(
+        {props.slideData && props.slideData.map((ref,index)=>(
         <li className="wrap-slide__li-img" key={index} ref={listRef.current[index]}>
-        <p className="wrap-slide__wrap-title"><span className="wrap-slide__main-title">{ref.title}</span><span className="wrap-slide__sub-title">{ref.rubyTitle}</span></p>
-        <figure className="wrap-slide__img"><a href={ref.imgLink} className="link"><img src={ref.img} alt="" className="images" /></a></figure>
+        <p className="wrap-slide__wrap-title"><span className="wrap-slide__main-title">{ref.program}</span><span className="wrap-slide__sub-title">{ref.ruby}</span></p>
+        <figure className="wrap-slide__img"><Link to={`/item/${ref._id}`}><a className="link"><img src={require(`../images/${ref.image}`)} alt="" className="images" /></a></Link></figure>
         </li>
         ))}
         </>

@@ -1,12 +1,9 @@
-import { useState,useEffect,createContext } from "react"
+import { useState,useEffect } from "react"
 import { Link } from "react-router-dom"
 import Slide from "../components/slide"
 
-export const SlideContext = createContext()
-
 const ReadAll = ()=>{
     const [allItems, setAllItems] = useState()
-    const [liData, setLiData] = useState([])
     useEffect(()=>{
         const getAllItems = async()=>{
             const response = await fetch("https://portfolionodejs-i77e.onrender.com/")
@@ -16,16 +13,9 @@ const ReadAll = ()=>{
         getAllItems()
     },[])
 
-    // allItems && allItems.allItems.map((items)=>
-    // setLiData(items)
-    // )
-    // console.log(liData)
-
     return (
         <>
-        <SlideContext.Provider value={allItems && allItems.allItems}>
         <Slide />
-        </SlideContext.Provider>
         <section id="main">
         <ul className="main__elem-ul">
             {allItems && allItems.allItems.map((item)=>

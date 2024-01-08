@@ -109,6 +109,11 @@ div,p,span,a,img,h3,ul,ol,li{
 	padding: 16px;
 	color: #000000;
 	background-color: aqua;
+	white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 80%;
+    max-width: 1000px;
 }
 
 .wrap-slide__circle{

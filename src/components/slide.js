@@ -1,31 +1,44 @@
 import SlideChild from "./slideChild";
 import SlideText from "./slideText";
 import { useEffect,useState } from "react";
-import img1 from "../images/img1.jpg";
-import img2 from "../images/img2.jpg";
-import img3 from "../images/img3.jpg";
-import img4 from "../images/img4.jpg";
-import img5 from "../images/img5.jpg";
+// import img1 from "../images/img1.jpg";
+// import img2 from "../images/img2.jpg";
+// import img3 from "../images/img3.jpg";
+// import img4 from "../images/img4.jpg";
+// import img5 from "../images/img5.jpg";
 
 import '../css/slide_style.css';
 
-const Slide = (props)=>{
+
+const Slide = ()=>{
     //const progInnerBar = useRef(null);
-    const [slideData,setSlideData] = useState([])
+    const [slideData,setSlideData] = useState()
 	const [slideSize,setSlideSize] = useState(0)
 	const [slideCount, setSlideCount] = useState(0)
 	const [duration,setDuration] = useState(5000)
 	const [isAnimation, setIsAnimation] = useState(true)
 
-	const liData = [
-		{title:'Javascript',rubyTitle:'ジャバスクリプト',imgLink:'#1',img:img1,topTxt:'動的に要素を追加したい：appendChild',btmTxt:'appendChildメソッドを使うと、指定したHTML要素の中の一番最後にパラメータで渡したHTML要素を挿入することができます。'},
-		{title:'PHP',rubyTitle:'ピーエイチピー',imgLink:'#2',img:img2,topTxt:'json_decode関数',btmTxt:'JSONデータをPHPで利用するためには、json_decode関数を利用します。'},
-		{title:'MYSQL',rubyTitle:'マイエスキューエル',imgLink:'#3',img:img3,topTxt:'NULLを条件にデータを取得する方法',btmTxt:'NULLであることを条件にデータを取得する場合、is nullやis not nullを用います。'},
-		{title:'HTML・CSS',rubyTitle:'エイチティエムエル・シーエスエス',imgLink:'#4',img:img4,topTxt:'absoluteした要素に可変の高さを与える',btmTxt:'positionは便利だけど、リキッドデザインで使う場合囲んだdivなどにposition:absoluteを当てると画像の伸縮がうまくいかなくなる。'},
-		{title:'Other',rubyTitle:'その他',imgLink:'#5',img:img5,topTxt:'react.js 現在のページのURL取得',btmTxt:'現在のページのURLを取得するには「react-router-dom」の「useParams」を使う'},
-	]
+	// const liData = [
+	// 	{_id:'001',image:'mysql.jpg',title:'コマンドラインでSSH接続する',text:'レンタルサーバーのデータベースにコマンドラインで接続する場合はSSH接続が必要',program:'MySQL',ruby:'マイエスキューエル'},
+	// 	{_id:'002',image:'html.jpg',title:'position:absoluteした要素に可変の高さを与える',text:'positionは便利だけど、リキッドデザインで使う場合囲んだdivなどにposition:',program:'HTML',ruby:'エイチティエムエル'},
+	// 	{_id:'003',image:'mysql.jpg',title:'コマンドラインでSSH接続する',text:'レンタルサーバーのデータベースにコマンドラインで接続する場合はSSH接続が必要',program:'MySQL',ruby:'マイエスキューエル'},
+	// 	{_id:'004',image:'mysql.jpg',title:'コマンドラインでSSH接続する',text:'レンタルサーバーのデータベースにコマンドラインで接続する場合はSSH接続が必要',program:'MySQL',ruby:'マイエスキューエル'},
+	// 	{_id:'005',image:'mysql.jpg',title:'コマンドラインでSSH接続する',text:'レンタルサーバーのデータベースにコマンドラインで接続する場合はSSH接続が必要',program:'MySQL',ruby:'マイエスキューエル'},
+	// ]
 
-	//console.log(props.allItems && props.allItems.allItems)
+	const [allItems, setAllItems] = useState()
+	useEffect(()=>{
+		const getSlideItems = async()=>{
+			const response = await fetch("https://portfolionodejs-i77e.onrender.com/")
+			const jsonRes = await response.json()
+			setAllItems(jsonRes)
+		}
+		getSlideItems()
+	},[])
+
+	const liDataLength = allItems && allItems.allItems.length
+	//console.log(allItems && allItems.allItems)
+	console.log(slideSize)
 
 	//プログレッシブバーのアニメーションリセット用クラスの切替
 	const progBarClass = isAnimation?'progBarAnime':'resetProgBarAnime'
@@ -37,7 +50,7 @@ const Slide = (props)=>{
 	}
 
 	//ページネーション用に配列をliDataの個数分作成して初期値にHTMLを格納
-	const elements = Array(liData.length).fill(<span></span>)
+	const elements = Array(liDataLength).fill(<span></span>)
 
 	let transformValue
 	let slideMoveDist = 0
@@ -45,7 +58,7 @@ const Slide = (props)=>{
 	// スライダーの移動距離を指定
 	const slideMove = (num)=>{
 		slideMoveDist = -slideSize * num
-		if((slideMoveDist <= -(slideSize*(liData.length)) && num >= (liData.length))){
+		if((slideMoveDist <= -(slideSize*(liDataLength)) && num >= (liDataLength))){
 			setSlideCount(0)
 		}
 		transformValue = "translateX("+slideMoveDist+"px)"
@@ -55,8 +68,8 @@ const Slide = (props)=>{
 	//スライダーデータをJSXにセット（現在はスライダーのテキスト部分のみ）＆プログレッシブバー実行
 	//let duration = 3000
     useEffect(()=>{
-		setSlideData(liData)
-    },[]);
+		setSlideData(allItems && allItems.allItems)
+    },[allItems]);
 
 	//スライダー自動運転のカスタムフック
 	const useSlideMoveAuto = (callback,delay)=>{
@@ -73,6 +86,7 @@ const Slide = (props)=>{
 	//スライダーの自動運転実行
 	useSlideMoveAuto(()=>{
 		setSlideCount((count)=>count+1)
+		resetAnimeProgBar()
 	},duration)
 
 	// スライダー移動距離をCSSへ
@@ -87,7 +101,7 @@ const Slide = (props)=>{
 
 	//次のナンバー
 	const nextNum = ()=>{
-		if(slideCount >= liData.length-1){
+		if(slideCount >= liDataLength-1){
 			return '01'
 		}else{
 			return (slideCount+2)<=10?'0'+(slideCount+2):slideCount+2
@@ -132,10 +146,10 @@ const Slide = (props)=>{
 	<div className="wrap-slide__main">
 		<div className="wrap-slide__wrap-ul">
 			<ul className="wrap-slide__ul-img" style={transStyle}>
-				<SlideChild slideData={liData} setSlideSize={setSlideSize} />
+				{slideData === undefined?"":<SlideChild slideData={slideData} setSlideSize={setSlideSize} />}
 			</ul>
 		</div>
-		<SlideText slideData={slideData} slideCount={slideCount} />
+		{slideData === undefined?"":<SlideText slideData={slideData} slideCount={slideCount} />}
 		<ul className="wrap-slide__page-nation">
 			<li className="wrap-slide__reverse">
 				<div onClick={reverseBtn} className="wrap-slide__reverse-link link">
