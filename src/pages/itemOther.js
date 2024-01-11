@@ -18,7 +18,7 @@ const ItemOther = ()=>{
             <li className="main__elem-li" key={item._id}>
                 <div className="main__top-elem">
                     <p className="main__li-title">{item.program}</p>
-                    <p className="main__li-sub">{item.update}</p>
+                    <p className="main__li-sub">{item.update.slice(0,10)}</p>
                 </div>
                 <figure className="main__image">
                     <img src={require(`../images/${item.image}`)} className="main__img images" alt="" />

@@ -13,7 +13,6 @@ const SlideChild = (props)=>{
         const marginLeftNum = margin.split('px')
         const slideListWidth = listRef.current[0].current.clientWidth
         const slideListSize = Number(marginLeftNum[0])+slideListWidth
-        console.log(listRef.current[0].current.children[1].children[0].children[0].children[0].naturalWidth)
         props.setSlideSize(slideListSize)
     },[])
     return (

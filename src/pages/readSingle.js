@@ -25,7 +25,7 @@ const ReadSingleItem = ()=>{
         <section id="page-main">
             <div className="page-main__wrap">
             <div className="page-main__top-title">{program}</div>
-            <div className="page-main__top-sub">{update}</div>
+            <div className="page-main__top-sub">{update.slice(0,10)}</div>
             <figure className="page-main__img">{image && <img src={require(`../images/${image}`)} alt="item" />}</figure>
             <div className="page-main__sub-wrap">
                 <h2 className="page-main__big-text">{title}</h2>
