@@ -8,7 +8,7 @@ body{
 	font-family: 'Noto Sans JP', sans-serif;
 }
 
-div,p,span,a,img,h3,ul,ol,li,section,form,input,textarea{
+div,p,span,a,img,h3,ul,ol,li,section,form,input,textarea,h2{
 	box-sizing:border-box;
 }
 
@@ -34,7 +34,7 @@ a:hover{
 	justify-content: space-between;
 	max-width: 1920px;
 	margin: 0 auto;
-	padding: 16px 5% 0;
+	padding: 16px 5% 50px;
 }
 
 .header__elem{
@@ -104,15 +104,32 @@ a:hover{
 	margin: 0 auto;
 }
 
+.main__heading{
+	max-width: 1920px;
+    width: 100%;
+    margin: 0 auto;
+    font-weight: normal;
+}
+
+.main__heading-child{
+	padding: 12px;
+    font-size: 1.2rem;
+    background-color: #000000;
+    color: #ffffff;
+	display: inline-block;
+}
+
 .main__elem-ul{
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 	gap: 24px;
+	margin: 16px 0 0;
 }
 
 .main__elem-li{
 	padding: 24px;
 	background-color: #efefef;
+	width: 100%;
 }
 
 .main__top-elem{
@@ -327,6 +344,7 @@ a:hover{
 /* 編集・追加ページ共通 */
 
 
+
 @media screen and (max-width: 700px){
 	.header__elem{
 		width: 50%;
@@ -339,7 +357,7 @@ a:hover{
 	}
 
 	#header,#main{
-		padding: 8px;
+		padding: 8px 8px 16px;
 	}
 	
 	.header__rogo{
@@ -515,5 +533,27 @@ a:hover{
 
   .page-main__link-wrap li{
 	width: 30%;
+  }
+
+  .main__elem-li{
+	padding: 8px;
+	margin: 0 0 8px;
+  }
+
+  .main__heading-child{
+	font-size: 0.75rem;
+	padding: 8px;
+  }
+
+  .main__small-text{
+	font-size: 0.7rem;
+  }
+
+  .main__big-text{
+	font-size: 0.8rem;
+  }
+
+  .page-main__small-txt{
+	font-size: 0.85rem;
   }
 }

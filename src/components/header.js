@@ -7,14 +7,14 @@ const Header = ()=>{
     const [active, setActive] = useState(false)
     const clickMenu = (e)=>{
         setActive(!active)
-        console.log(e.target.classList)
+        //console.log(e.target.classList)
     }
     //const clkDisp = useRef()
     return (
         <section id="header">
             <div className="header__elem">
                 <div className="header__rogo"><img src={rogo} className="header__img images" alt="技術ブログ" /></div>
-                <p className="header__main-txt"><span className="header__in-txt">技術ブログ</span></p>
+                <p className="header__main-txt"><span className="header__in-txt">技術メモ</span></p>
             </div>
             <nav className={active?"header__menu-wrap animate__fadeIn":"header__menu-wrap disp animate__fadeIn"}>
                 <span className="header__txt">カテゴリーから探す</span>

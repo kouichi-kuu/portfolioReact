@@ -53,7 +53,7 @@ const UpdateItem = (props)=>{
             <form onSubmit={handleSubmit} className="update__form subpage__form">
                 <input value={program} onChange={(e)=>setProgram(e.target.value)} className="update__input subpage__input" type="text" name="program" placeholder="プログラム言語" required />
                 <input value={ruby} onChange={(e)=>setRuby(e.target.value)} className="update__input subpage__input" type="text" name="ruby" placeholder="ルビ" required />
-                <input value={update} onChange={(e)=>setUpdate(e.target.value)} className="update__input subpage__input" type="text" name="update" placeholder="アップ日" required />
+                <input value={update} onChange={(e)=>setUpdate(e.target.value)} className="update__input subpage__input" type="date" name="update" placeholder="アップ日" required />
                 <input value={image} onChange={(e)=>setImage(e.target.value)} className="update__input subpage__input" type="text" name="image" placeholder="画像" required />
                 <input value={title} onChange={(e)=>setTitle(e.target.value)} className="update__input subpage__input" type="text" name="title" placeholder="タイトル名" required />
                 <textarea value={text} onChange={(e)=>setText(e.target.value)} className="update__input subpage__input" type="text" name="text" rows="15" placeholder="テキスト" required></textarea>

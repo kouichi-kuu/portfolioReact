@@ -9,7 +9,7 @@ const Footer = ()=>{
                     <li className="footer__elem-li">
                         <figure className="footer__rogo-img"><img src={rogo} className="footer__img images" alt="技術ブログ" /></figure>
                     </li>
-                    <li className="footer__elem-li">技術ブログ</li>
+                    <li className="footer__elem-li">技術メモ</li>
                 </ul>
                 <ul className="footer__menu">
                     <li className="footer__list">

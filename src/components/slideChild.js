@@ -1,9 +1,8 @@
 import React from "react";
-import {useRef,useEffect,createRef} from "react";
+import {useRef,useEffect,createRef,useState} from "react";
 import { Link } from "react-router-dom";
 
 const SlideChild = (props)=>{
-    //console.log(props.slideData && props.slideData)
     const listRef = useRef([])
     props.slideData && props.slideData.forEach((_,index)=>{
         listRef.current[index] = createRef()
@@ -14,6 +13,7 @@ const SlideChild = (props)=>{
         const marginLeftNum = margin.split('px')
         const slideListWidth = listRef.current[0].current.clientWidth
         const slideListSize = Number(marginLeftNum[0])+slideListWidth
+        console.log(listRef.current[0].current.children[1].children[0].children[0].children[0].naturalWidth)
         props.setSlideSize(slideListSize)
     },[])
     return (
@@ -29,5 +29,3 @@ const SlideChild = (props)=>{
 }
 
 export default SlideChild;
-
-

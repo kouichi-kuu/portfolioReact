@@ -2,10 +2,12 @@ import { Link } from "react-router-dom"
 
 const SlideText = (props)=>{
     const styleEntity = {
+        display:'block',
         opacity:1
     }
 
     const styleTrans = {
+        display:'none',
         opacity:0
     }
     return (

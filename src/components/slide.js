@@ -16,7 +16,7 @@ const Slide = ()=>{
 	const [slideSize,setSlideSize] = useState(0)
 	const [slideCount, setSlideCount] = useState(0)
 	const [duration,setDuration] = useState(5000)
-	const [isAnimation, setIsAnimation] = useState(true)
+	const [isAnimation, setIsAnimation] = useState(false)
 
 	// const liData = [
 	// 	{_id:'001',image:'mysql.jpg',title:'コマンドラインでSSH接続する',text:'レンタルサーバーのデータベースにコマンドラインで接続する場合はSSH接続が必要',program:'MySQL',ruby:'マイエスキューエル'},
@@ -26,18 +26,18 @@ const Slide = ()=>{
 	// 	{_id:'005',image:'mysql.jpg',title:'コマンドラインでSSH接続する',text:'レンタルサーバーのデータベースにコマンドラインで接続する場合はSSH接続が必要',program:'MySQL',ruby:'マイエスキューエル'},
 	// ]
 
-	const [allItems, setAllItems] = useState()
+	const [newdateItem, setNewdateItem] = useState()
 	useEffect(()=>{
 		const getSlideItems = async()=>{
-			const response = await fetch("https://portfolionodejs-i77e.onrender.com/")
+			const response = await fetch("https://portfolionodejs-i77e.onrender.com/item/newdate")
 			const jsonRes = await response.json()
-			setAllItems(jsonRes)
+			setNewdateItem(jsonRes)
 		}
 		getSlideItems()
 	},[])
 
-	const liDataLength = allItems && allItems.allItems.length
-	//console.log(allItems && allItems.allItems)
+	const liDataLength = newdateItem && newdateItem.newdateItem.length
+	//console.log(newdateItem && newdateItem.newdateItem)
 	console.log(slideSize)
 
 	//プログレッシブバーのアニメーションリセット用クラスの切替
@@ -48,7 +48,7 @@ const Slide = ()=>{
 			setIsAnimation(true)
 		},0)
 	}
-
+	
 	//ページネーション用に配列をliDataの個数分作成して初期値にHTMLを格納
 	const elements = Array(liDataLength).fill(<span></span>)
 
@@ -68,8 +68,8 @@ const Slide = ()=>{
 	//スライダーデータをJSXにセット（現在はスライダーのテキスト部分のみ）＆プログレッシブバー実行
 	//let duration = 3000
     useEffect(()=>{
-		setSlideData(allItems && allItems.allItems)
-    },[allItems]);
+		setSlideData(newdateItem && newdateItem.newdateItem)
+    },[newdateItem]);
 
 	//スライダー自動運転のカスタムフック
 	const useSlideMoveAuto = (callback,delay)=>{
@@ -85,8 +85,8 @@ const Slide = ()=>{
 
 	//スライダーの自動運転実行
 	useSlideMoveAuto(()=>{
-		setSlideCount((count)=>count+1)
-		resetAnimeProgBar()
+		//setSlideCount((count)=>count+1)
+		nextBtn()
 	},duration)
 
 	// スライダー移動距離をCSSへ
@@ -117,7 +117,10 @@ const Slide = ()=>{
 
 	const reverseBtn = ()=>{
 		if(slideCount === 0){
-			return false
+			setDuration(null)
+			setSlideCount(liDataLength-1)
+			setDuration(duration)
+			resetAnimeProgBar()
 		}else{
 			setDuration(null)
 			setSlideCount((count)=>count-1)
@@ -128,7 +131,7 @@ const Slide = ()=>{
 
     return (
         <div id="wrap-slide">
-	<div className="wrap-slide__page">
+			<div className="wrap-slide__page">
 		<div className="wrap-slide__midwrap-left">
 			<p className="wrap-slide__current-num">{currentNum()}</p>
 			<div className="wrap-slide__pgs-bar">

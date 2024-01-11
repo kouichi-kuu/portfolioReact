@@ -33,7 +33,7 @@ div,p,span,a,img,h3,ul,ol,li{
 	display: flex;
 	flex-wrap: wrap;
 	align-items: flex-start;
-	padding: 32px;
+	padding: 16px 32px 42px;
 }
 
 .wrap-slide__page{
@@ -79,6 +79,7 @@ div,p,span,a,img,h3,ul,ol,li{
 .wrap-slide__li-img{
 	margin: 0 16px 0 0;
 	flex-shrink: 0;
+	width: 1000px;
 }
 
 .wrap-slide__ul-text{
@@ -234,6 +235,22 @@ div,p,span,a,img,h3,ul,ol,li{
 	height: 100%;
 } */
 
+/* スライダーヘディングテキスト */
+.slider-heading{
+	max-width: 1920px;
+	width: 100%;
+	padding: 0 5%;
+	margin: 0 auto;
+	font-weight: normal;
+}
+
+.slider-heading__child{
+	padding: 12px;
+	font-size: 1.2rem;
+	background-color: #000000;
+	color: #ffffff;
+	display: inline-block;
+}
 
 
 @media screen and (max-width: 700px){
@@ -284,13 +301,17 @@ div,p,span,a,img,h3,ul,ol,li{
 	.wrap-slide__ul-text{
 		left: 0;
 		width: 100%;
-		bottom: 16%;
+		bottom: 20%;
 	}
 
 	.wrap-slide__li-toptext .link{
 		font-size: 0.75rem;
 		padding: 6px;
 		margin: 0 0 4px;
+		width: 50%;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
 	}
 
 	.wrap-slide__li-btmtext .link{
@@ -334,6 +355,7 @@ div,p,span,a,img,h3,ul,ol,li{
 
 	.wrap-slide__next-txt{
 		font-size: 1.5rem;
+		margin: 8px 0 0;
 	}
 
 	.wrap-slide__midwrap-left{
@@ -349,5 +371,18 @@ div,p,span,a,img,h3,ul,ol,li{
 
 	.wrap-slide__sub-title{
 		font-size: 0.75rem;
+	}
+
+	.wrap-slide__wrap-ul{
+		margin: 0 0 4px;
+	}
+
+	.slider-heading{
+		padding: 0 8px 0;
+	}
+
+	.slider-heading__child{
+		font-size: 0.75rem;
+		padding: 8px;
 	}
 }

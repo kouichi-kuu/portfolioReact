@@ -15,8 +15,10 @@ const ReadAll = ()=>{
 
     return (
         <>
+        <h2 className="slider-heading"><span className="slider-heading__child">最新情報TOP5</span></h2>
         <Slide />
         <section id="main">
+        <h2 className="main__heading"><span className="main__heading-child">全ての情報</span></h2>
         <ul className="main__elem-ul">
             {allItems && allItems.allItems.map((item)=>
             <li className="main__elem-li" key={item._id}>
