@@ -1,14 +1,8 @@
 import SlideChild from "./slideChild";
 import SlideText from "./slideText";
 import { useEffect,useState } from "react";
-// import img1 from "../images/img1.jpg";
-// import img2 from "../images/img2.jpg";
-// import img3 from "../images/img3.jpg";
-// import img4 from "../images/img4.jpg";
-// import img5 from "../images/img5.jpg";
 
 import '../css/slide_style.css';
-
 
 const Slide = ()=>{
     //const progInnerBar = useRef(null);
@@ -46,7 +40,7 @@ const Slide = ()=>{
 		setIsAnimation(false)
 		setTimeout(()=>{
 			setIsAnimation(true)
-		},0)
+		},500)
 	}
 	
 	//ページネーション用に配列をliDataの個数分作成して初期値にHTMLを格納
@@ -69,6 +63,7 @@ const Slide = ()=>{
 	//let duration = 3000
     useEffect(()=>{
 		setSlideData(newdateItem && newdateItem.newdateItem)
+		resetAnimeProgBar()
     },[newdateItem]);
 
 	//スライダー自動運転のカスタムフック
@@ -85,8 +80,8 @@ const Slide = ()=>{
 	
 	//スライダーの自動運転実行
 	useSlideMoveAuto(()=>{
-		//setSlideCount((count)=>count+1)
-		nextBtn()
+		setSlideCount((count)=>count+1)
+		resetAnimeProgBar()
 	},duration)
 
 	// スライダー移動距離をCSSへ
