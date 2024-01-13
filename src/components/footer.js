@@ -1,4 +1,4 @@
-import rogo from "../images/rogo.jpg"
+import whiterogo from "../images/rogo_white.png"
 import { Link } from "react-router-dom"
 
 const Footer = ()=>{
@@ -7,7 +7,7 @@ const Footer = ()=>{
             <div className="footer__contents">
                 <ul className="footer__elem-ul">
                     <li className="footer__elem-li">
-                        <figure className="footer__rogo-img"><img src={rogo} className="footer__img images" alt="技術ブログ" /></figure>
+                        <figure className="footer__rogo-img"><img src={whiterogo} className="footer__img images" alt="技術ブログ" /></figure>
                     </li>
                     <li className="footer__elem-li">技術メモ</li>
                 </ul>

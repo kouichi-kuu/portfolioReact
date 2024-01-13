@@ -38,7 +38,7 @@ const Slide = ()=>{
 
 	const liDataLength = newdateItem && newdateItem.newdateItem.length
 	//console.log(newdateItem && newdateItem.newdateItem)
-	console.log(slideSize)
+	//console.log(slideSize)
 
 	//プログレッシブバーのアニメーションリセット用クラスの切替
 	const progBarClass = isAnimation?'progBarAnime':'resetProgBarAnime'
@@ -65,7 +65,7 @@ const Slide = ()=>{
 	}
 	slideMove(slideCount)
 
-	//スライダーデータをJSXにセット（現在はスライダーのテキスト部分のみ）＆プログレッシブバー実行
+	//スライダーデータをJSXにセット（現在はスライダーのテキスト部分のみ）
 	//let duration = 3000
     useEffect(()=>{
 		setSlideData(newdateItem && newdateItem.newdateItem)
@@ -82,7 +82,7 @@ const Slide = ()=>{
 			}
 		},[callback, delay])
 	}
-
+	
 	//スライダーの自動運転実行
 	useSlideMoveAuto(()=>{
 		//setSlideCount((count)=>count+1)

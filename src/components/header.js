@@ -1,4 +1,4 @@
-import rogo from "../images/rogo.jpg"
+import rogo from "../images/rogo.png"
 import {Link} from "react-router-dom"
 import { useState,useRef } from "react"
 
