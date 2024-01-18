@@ -1,4 +1,5 @@
 import { useState } from "react"
+import useAuth from "../utils/useAuth"
 
 const CreateItem = ()=>{
     const [program, setProgram] = useState("")
@@ -31,6 +32,8 @@ const CreateItem = ()=>{
             alert("アイテム作成失敗")
         }
     }
+    const loginUser = useAuth()
+    if(loginUser){
     return (
         <div id="create" className="subpage">
             <p className="create__heading subpage__heading">アイテム作成</p>
@@ -45,6 +48,7 @@ const CreateItem = ()=>{
             </form>
         </div>
     )
+}
 }
 
 export default CreateItem

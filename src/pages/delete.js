@@ -1,5 +1,6 @@
 import {useState,useEffect} from 'react'
 import {useParams,Link} from 'react-router-dom'
+import useAuth from '../utils/useAuth'
 
 const Delete = ()=>{
     const [program, setProgram] = useState("")
@@ -7,6 +8,7 @@ const Delete = ()=>{
     const [image, setImage] = useState("")
     const [title, setTitle] = useState("")
     const [text, setText] = useState("")
+    const [email, setEmail] = useState("")
     const params = useParams()
 
     useEffect(()=>{
@@ -18,6 +20,7 @@ const Delete = ()=>{
             setImage(jsonResponse.singleItem.image)
             setTitle(jsonResponse.singleItem.title)
             setText(jsonResponse.singleItem.text)
+            setEmail(jsonResponse.singleItem.email)
         }
         getSingleItem()
     },[params.id])
@@ -29,6 +32,7 @@ const Delete = ()=>{
                 headers:{
                     "Accept":"application/json",
                     "Content-Type":"application/json",
+                    "authorization":`Bearer ${localStorage.getItem("token")}`
                 },
             })
             const jsonData = await response.json()
@@ -37,6 +41,8 @@ const Delete = ()=>{
             alert("消去失敗")
         }
     }
+    const loginUser = useAuth()
+    if(loginUser === email){
     return (
         <section id="page-main">
             <div className="page-main__wrap">
@@ -56,6 +62,9 @@ const Delete = ()=>{
             </div>
         </section>
     )
+    }else{
+        return <h1>権限がありません</h1>
+    }
 }
 
 export default Delete

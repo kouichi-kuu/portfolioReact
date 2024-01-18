@@ -1,5 +1,6 @@
 import { useState,useEffect } from "react"
 import {useParams,Link} from "react-router-dom"
+import useAuth from "../utils/useAuth"
 
 const UpdateItem = (props)=>{
     const [program, setProgram] = useState("")
@@ -8,6 +9,7 @@ const UpdateItem = (props)=>{
     const [image, setImage] = useState("")
     const [title, setTitle] = useState("")
     const [text, setText] = useState("")
+    const [email,setEmail] = useState("")
     const params = useParams()
 
     useEffect(()=>{
@@ -20,6 +22,7 @@ const UpdateItem = (props)=>{
             setTitle(jsonResponse.singleItem.title)
             setImage(jsonResponse.singleItem.image)
             setText(jsonResponse.singleItem.text)
+            setEmail(jsonResponse.singleItem.email)
         }
         getSingleItem()
     },[params.id])
@@ -31,6 +34,7 @@ const UpdateItem = (props)=>{
                 headers:{
                     "Accept":"application/json",
                     "Content-Type":"application/json",
+                    "authorization":`Bearer ${localStorage.getItem("token")}`
                 },
                 body:JSON.stringify({
                     program:program,
@@ -47,6 +51,8 @@ const UpdateItem = (props)=>{
             alert("アイテム編集失敗")
         }
     }
+    const loginUser = useAuth()
+    if(loginUser === email){
     return (
         <div id="update" className="subpage">
             <p className="update__heading subpage__heading">アイテム編集</p>
@@ -62,6 +68,9 @@ const UpdateItem = (props)=>{
             <button className="subpage__btn"><Link to={`/item/${params.id}`}>編集せずに戻る</Link></button>
         </div>
     )
+    }else{
+        return <h1>権限がありません</h1>
+    }
 }
 
 export default UpdateItem

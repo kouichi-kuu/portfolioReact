@@ -11,6 +11,7 @@ import UpdateItem from "./pages/update"
 import Delete from "./pages/delete"
 import Header from "./components/header"
 import Footer from "./components/footer"
+import Login from "./pages/user/login"
 import "./css/reset.css"
 import "./App.css"
 
@@ -29,6 +30,7 @@ const App = ()=>{
             <Route path="/item/create" element={<CreateItem />} />
             <Route path="/item/update/:id" element={<UpdateItem />} />
             <Route path='/item/delete/:id' element={<Delete />} />
+            <Route path="/user/login" element={<Login />} />
         </Routes>
         <Footer />
         </BrowserRouter>
